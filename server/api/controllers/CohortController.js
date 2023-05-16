@@ -3,7 +3,7 @@ const database = require("../models");
 class CohortController {
   static async getCohorts(req, res) {
     try {
-      const response = await database.Cohorts.findAll();
+      const response = await database.Cohort.findAll();
       return res.status(200).json(response);
     } catch (error) {
       return res.status(500).json({ error: error.stack });
@@ -13,7 +13,7 @@ class CohortController {
   static async getCohortById(req, res) {
     const { id } = req.params;
     try {
-      const response = await database.Cohorts.findOne({
+      const response = await database.Cohort.findOne({
         where: { id: Number(id) },
       });
       return res.status(200).json(response);
@@ -25,7 +25,7 @@ class CohortController {
   static async getCohortsByLevelId(req, res) {
     const { id } = req.params;
     try {
-      const response = await database.Cohorts.findOne({
+      const response = await database.Cohort.findAll({
         where: { level_id: Number(id) },
       });
       return res.status(200).json(response);
@@ -37,7 +37,7 @@ class CohortController {
   static async getCohortsByTeacherId(req, res) {
     const { id } = req.params;
     try {
-      const response = await database.Cohorts.findOne({
+      const response = await database.Cohort.findAll({
         where: { teacher_id: Number(id) },
       });
       return res.status(200).json(response);
@@ -49,7 +49,7 @@ class CohortController {
   static async createCohort(req, res) {
     const newCohort = req.body;
     try {
-      const createdCohort = await database.Cohorts.create(newCohort);
+      const createdCohort = await database.Cohort.create(newCohort);
       return res.status(201).json(createdCohort);
     } catch (error) {
       return res.status(500).json({ error: error.stack });
@@ -59,7 +59,7 @@ class CohortController {
   static async deleteCohort(req, res) {
     const { id } = req.params;
     try {
-      await database.Cohorts.destroy({
+      await database.Cohort.destroy({
         where: { id: Number(id) },
       });
       return res.status(200).json({ message: "Cohort deleted successfully" });
@@ -72,7 +72,7 @@ class CohortController {
     const { id } = req.params;
     const newData = req.body;
     try {
-      await database.Cohorts.update(newData, {
+      await database.Cohort.update(newData, {
         where: { id: Number(id) },
       });
       return res.status(200).json({ message: "Cohort updated successfully" });
