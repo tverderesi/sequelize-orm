@@ -1,34 +1,33 @@
 "use strict";
-
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("Cohorts", {
+    return queryInterface.createTable("Enrollments", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      start_date: {
-        type: Sequelize.DATE,
+      status: {
+        type: Sequelize.STRING,
       },
-      level_id: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: "Levels",
-          key: "id",
-        },
-        onUpdate: "CASCADE",
-        onDelete: "SET NULL",
-      },
-      teacher_id: {
+      student_id: {
         type: Sequelize.INTEGER,
         references: {
           model: "People",
           key: "id",
         },
         onUpdate: "CASCADE",
-        onDelete: "SET NULL",
+        onDelete: "CASCADE",
+      },
+      cohort_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Cohorts",
+          key: "id",
+        },
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
       },
       createdAt: {
         allowNull: false,
@@ -40,8 +39,7 @@ module.exports = {
       },
     });
   },
-
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("Cohorts");
+    return queryInterface.dropTable("Enrollments");
   },
 };
