@@ -1,5 +1,3 @@
-Certainly! Here's an updated version of the README with more specific information:
-
 # ORM using Sequelize for an English School
 
 ## Description
