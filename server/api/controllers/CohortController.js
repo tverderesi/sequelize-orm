@@ -46,6 +46,45 @@ class CohortController {
     }
   }
 
+  static async getAllCohortsMaxSize(req, res) {
+    try {
+      const response = await database.Cohort.findAll({
+        attributes: ["id", "maxSize"],
+      });
+      return res.status(200).json(response);
+    } catch (error) {
+      return res.status(500).json({ error: error.stack });
+    }
+  }
+
+  static async getCohortMaxSize(req, res) {
+    const { id } = req.params;
+    try {
+      const response = await database.Cohort.findOne({
+        where: { id: Number(id) },
+        attributes: ["id", "maxSize"],
+      });
+      return res.status(200).json(response);
+    } catch (error) {
+      return res.status(500).json({ error: error.stack });
+    }
+  }
+
+  static async getFullCohorts(req, res) {
+    const maxSize = await CohortController.getAllCohortsMaxSize();
+    console.log(maxSize);
+    try {
+      const response = await database.Cohort.findAndCountAll({
+        where: { status: "confirmed" },
+        include: ["cohortId"],
+        group: ["cohortId"],
+        having: database.Sequelize.literal("count(*) >= maxSize"),
+      });
+      return res.status(200).json(response.count);
+    } catch (error) {
+      return res.status(500).json({ error: error.stack });
+    }
+  }
   static async createCohort(req, res) {
     const newCohort = req.body;
     try {

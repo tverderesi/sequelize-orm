@@ -1,4 +1,5 @@
 const database = require("../models");
+const Sequelize = require("sequelize");
 
 class EnrollmentController {
   static async getEnrollments(req, res) {
@@ -15,6 +16,30 @@ class EnrollmentController {
     try {
       const response = await database.Enrollment.findOne({
         where: { id: Number(id) },
+      });
+      return res.status(200).json(response);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  }
+
+  static async getEnrollmentByPersonId(req, res) {
+    const { personId } = req.params;
+    try {
+      const response = await database.Enrollment.findOne({
+        where: { personId: Number(personId) },
+      });
+      return res.status(200).json(response);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  }
+
+  static async getEnrollmentsByCohortId(req, res) {
+    const { cohortId } = req.params;
+    try {
+      const response = await database.Enrollment.findAll({
+        where: { cohortId: Number(cohortId) },
       });
       return res.status(200).json(response);
     } catch (error) {

@@ -14,6 +14,7 @@ module.exports = {
       },
       level_id: {
         type: Sequelize.INTEGER,
+        allowNull: true,
         references: {
           model: "Levels",
           key: "id",
@@ -23,6 +24,7 @@ module.exports = {
       },
       teacher_id: {
         type: Sequelize.INTEGER,
+        allowNull: true,
         references: {
           model: "People",
           key: "id",
@@ -37,6 +39,14 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
+      },
+      deletedAt: {
+        allowNull: true,
+        type: Sequelize.DATE,
+      },
+      maxSize: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
       },
     });
   },

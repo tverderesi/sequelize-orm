@@ -3,21 +3,15 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface
-      .addColumn("Cohorts", "deletedAt", {
-        type: Sequelize.DATE,
+      .changeColumn("Cohorts", "level_id", {
+        type: Sequelize.INTEGER,
         allowNull: true,
-      })
-      .then(() => {
-        return queryInterface.changeColumn("Cohorts", "level_id", {
-          type: Sequelize.INTEGER,
-          allowNull: true,
-          onDelete: "SET NULL",
-          references: {
-            model: "Levels",
-            key: "id",
-          },
-          onUpdate: "CASCADE",
-        });
+        onDelete: "SET NULL",
+        references: {
+          model: "Levels",
+          key: "id",
+        },
+        onUpdate: "CASCADE",
       })
       .then(() => {
         return queryInterface.changeColumn("Cohorts", "teacher_id", {
@@ -35,18 +29,15 @@ module.exports = {
 
   down: (queryInterface, Sequelize) => {
     return queryInterface
-      .removeColumn("Cohorts", "deletedAt")
-      .then(() => {
-        return queryInterface.changeColumn("Cohorts", "level_id", {
-          type: Sequelize.INTEGER,
-          allowNull: false,
-          onDelete: null,
-          references: {
-            model: "Levels",
-            key: "id",
-          },
-          onUpdate: "CASCADE",
-        });
+      .changeColumn("Cohorts", "level_id", {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        onDelete: null,
+        references: {
+          model: "Levels",
+          key: "id",
+        },
+        onUpdate: "CASCADE",
       })
       .then(() => {
         return queryInterface.changeColumn("Cohorts", "teacher_id", {

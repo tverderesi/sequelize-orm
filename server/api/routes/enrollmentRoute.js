@@ -29,4 +29,10 @@ router.patch(
   EnrollmentController.restoreEnrollmentByPersonId
 );
 
+// GET Enrollments by cohort ID
+router.get(
+  "/cohorts/:cohortId/enrollments",
+  EnrollmentController.getEnrollmentsByCohortId
+);
+
 module.exports = router;

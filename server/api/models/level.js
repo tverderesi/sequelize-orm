@@ -17,8 +17,13 @@ module.exports = (sequelize, DataTypes) => {
       },
     }
   );
+
   Level.associate = function (models) {
-    // associations can be defined here
+    Level.hasMany(models.Cohort, {
+      foreignKey: "level_id",
+      as: "cohorts",
+    });
   };
+
   return Level;
 };

@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       level_id: { type: DataTypes.INTEGER, allowNull: false },
       teacher_id: { type: DataTypes.INTEGER, allowNull: false },
       deletedAt: { type: DataTypes.DATE, allowNull: true },
+      maxSize: { type: DataTypes.INTEGER, allowNull: false },
     },
     {
       paranoid: true,
