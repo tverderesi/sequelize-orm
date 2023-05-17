@@ -27,7 +27,7 @@ To install and run the project, follow the steps below:
 
 ## Pipeline Status
 
-### Completed Tasks:
+
 
 - [x] Set up project structure and file organization.
 - [x] Implement Sequelize models for People, Level, Cohort, and Enrollment.
@@ -35,12 +35,12 @@ To install and run the project, follow the steps below:
 - [x] Seed the database with initial data.
 - [x] Implement PersonController for CRUD operations on People.
 - [x] Implement CohortController for CRUD operations on Cohorts.
-- [x] Create routes for People and Cohorts.
-
-### To-Do:
-
-- [ ] Implement LevelController for CRUD operations on Levels.
-- [ ] Implement EnrollmentController for CRUD operations on Enrollments.
+- [x] Create routes for People and Cohorts, Levels and Enrollments.
+- [x] Implement LevelController for CRUD operations on Levels.
+- [x] Implement EnrollmentController for CRUD operations on Enrollments.
+- [x] Implement PeopleController for CRUD operations on People.
+- [x] Implement CohortController for CRUD operations on Cohorts.
+- [x] Refactor Controllers into Services.
 - [ ] Create client-side application for interacting with the API using Next.js.
 - [ ] Host the database and deploy the application to a production environment.
 
