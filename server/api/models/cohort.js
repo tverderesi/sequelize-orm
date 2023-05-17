@@ -3,11 +3,12 @@ module.exports = (sequelize, DataTypes) => {
   const Cohort = sequelize.define(
     "Cohort",
     {
-      start_date: DataTypes.DATE,
-      level_id: DataTypes.INTEGER,
-      teacher_id: DataTypes.INTEGER,
+      start_date: { type: DataTypes.DATE, allowNull: false },
+      level_id: { type: DataTypes.INTEGER, allowNull: false },
+      teacher_id: { type: DataTypes.INTEGER, allowNull: false },
+      deletedAt: { type: DataTypes.DATE, allowNull: true },
     },
-    {}
+    { paranoid: true }
   );
   Cohort.associate = function (models) {
     Cohort.belongsTo(models.Level, {
