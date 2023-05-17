@@ -17,4 +17,7 @@ router.delete("/levels/:id", LevelController.deleteLevel);
 // Update a Level
 router.put("/levels/:id", LevelController.updateLevel);
 
+// Restore a Level
+router.patch("/levels/:id/restore", LevelController.restoreLevel);
+
 module.exports = router;

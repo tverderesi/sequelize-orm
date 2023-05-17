@@ -23,4 +23,7 @@ router.delete("/cohorts/:id", cohortController.deleteCohort);
 // Update a cohort
 router.put("/cohorts/:id", cohortController.updateCohort);
 
+//Restore a cohort
+router.patch("/cohorts/:id/restore", cohortController.restoreCohort);
+
 module.exports = router;

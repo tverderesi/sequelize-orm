@@ -80,6 +80,23 @@ class CohortController {
       return res.status(500).json({ error: error.stack });
     }
   }
+
+  static async restoreCohort(req, res) {
+    const { id } = req.params;
+    try {
+      const cohort = await database.Cohort.restore({
+        where: { id: Number(id) },
+      });
+
+      if (!cohort) {
+        return res.status(404).json({ message: "Cohort not found" });
+      }
+
+      return res.status(200).json({ message: "Cohort restored successfully" });
+    } catch (error) {
+      return res.status(500).json({ error: error.stack });
+    }
+  }
 }
 
 module.exports = CohortController;

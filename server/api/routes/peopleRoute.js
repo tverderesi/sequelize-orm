@@ -3,10 +3,22 @@ const PersonController = require("../controllers/PersonController");
 
 const router = Router();
 
+// GET all people
 router.get("/people", PersonController.getPeople);
+
+// GET person by ID
 router.get("/person/:id", PersonController.getPerson);
-router.patch("/people/:id", PersonController.updatePerson);
+
+// Update a person
+router.put("/people/:id", PersonController.updatePerson);
+
+// Delete a person
 router.delete("/people/:id", PersonController.deletePerson);
+
+// Restore a person
 router.post("/people", PersonController.createPerson);
+
+// Restore a person
+router.patch("/people/:id/restore", PersonController.restorePerson);
 
 module.exports = router;

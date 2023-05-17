@@ -17,4 +17,16 @@ router.put("/enrollments/:id", EnrollmentController.updateEnrollment);
 // Delete an enrollment
 router.delete("/enrollments/:id", EnrollmentController.deleteEnrollment);
 
+// Restore an enrollment
+router.patch(
+  "/enrollments/:id/restore",
+  EnrollmentController.restoreEnrollment
+);
+
+// Restore an enrollment by person ID
+router.patch(
+  "/enrollments/person/:id/restore",
+  EnrollmentController.restoreEnrollmentByPersonId
+);
+
 module.exports = router;

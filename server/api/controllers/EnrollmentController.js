@@ -60,6 +60,44 @@ class EnrollmentController {
       return res.status(500).json({ error: error.message });
     }
   }
+
+  static async restoreEnrollment(req, res) {
+    const { id } = req.params;
+    try {
+      const enrollment = await database.Enrollment.restore({
+        where: { id: Number(id) },
+      });
+
+      if (!enrollment) {
+        return res.status(404).json({ message: "Enrollment not found" });
+      }
+
+      return res
+        .status(200)
+        .json({ message: "Enrollment restored successfully" });
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  }
+
+  static async restoreEnrollmentByPersonId(req, res) {
+    const { personId } = req.params;
+    try {
+      const enrollment = await database.Enrollment.restore({
+        where: { personId: Number(personId) },
+      });
+
+      if (!enrollment) {
+        return res.status(404).json({ message: "Enrollment not found" });
+      }
+
+      return res
+        .status(200)
+        .json({ message: "Enrollment restored successfully" });
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  }
 }
 
 module.exports = EnrollmentController;
