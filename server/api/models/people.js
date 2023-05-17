@@ -30,7 +30,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   People.associate = function (models) {
-    // associations can be defined here
+    People.hasMany(models.Enrollment, {
+      foreignKey: "student_id",
+      as: "enrollments",
+      scope: {
+        status: "confirmed",
+      },
+    });
   };
   return People;
 };

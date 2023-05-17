@@ -64,6 +64,31 @@ class PersonController {
       return res.status(500).json({ error: error.message });
     }
   }
+
+  static async getEnrollmentsByPersonId(req, res) {
+    const { studentId } = req.params;
+    try {
+      const response = await database.Enrollment.findAll({
+        where: { student_id: Number(studentId) },
+      });
+      return res.status(200).json(response);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  }
+  static async removeEnrollmentByPersonIdAndEnrollmentId(req, res) {
+    const { studentId, enrollmentId } = req.params;
+    try {
+      await database.Enrollment.destroy({
+        where: { id: Number(enrollmentId), student_id: Number(studentId) },
+      });
+      return res
+        .status(200)
+        .json({ message: "Enrollment removed successfully" });
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  }
 }
 
 module.exports = PersonController;

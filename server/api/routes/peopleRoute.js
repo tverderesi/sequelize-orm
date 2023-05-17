@@ -21,4 +21,16 @@ router.post("/people", PersonController.createPerson);
 // Restore a person
 router.patch("/people/:id/restore", PersonController.restorePerson);
 
+// Get Enrollments by Person ID
+router.get(
+  "/people/:id/enrollments",
+  PersonController.getEnrollmentsByPersonId
+);
+
+// Remove Enrollment by Person ID and Enrollment ID
+router.delete(
+  "/people/:id/enrollments/:enrollmentId",
+  PersonController.removeEnrollmentByPersonIdAndEnrollmentId
+);
+
 module.exports = router;
