@@ -28,6 +28,9 @@ module.exports = (sequelize, DataTypes) => {
     {
       tableName: "Enrollments",
       paranoid: true,
+      defaultScope: {
+        where: { deletedAt: null },
+      },
     }
   );
 

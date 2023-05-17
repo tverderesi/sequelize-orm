@@ -8,7 +8,13 @@ module.exports = (sequelize, DataTypes) => {
       teacher_id: { type: DataTypes.INTEGER, allowNull: false },
       deletedAt: { type: DataTypes.DATE, allowNull: true },
     },
-    { paranoid: true }
+    {
+      paranoid: true,
+      tableName: "Cohorts",
+      defaultScope: {
+        where: { deletedAt: null },
+      },
+    }
   );
   Cohort.associate = function (models) {
     Cohort.belongsTo(models.Level, {

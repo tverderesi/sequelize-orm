@@ -12,6 +12,9 @@ module.exports = (sequelize, DataTypes) => {
       updatedAt: "updatedAt",
       tableName: "Levels",
       paranoid: true,
+      defaultScope: {
+        where: { deletedAt: null },
+      },
     }
   );
   Level.associate = function (models) {
